@@ -36,7 +36,15 @@ header {
     grid-template-rows: 1fr;
     gap: 10px;
     padding: 10px;
+    /* transition: transform 0.6s;
+    transform-style: preserve-3d; */
 }
+
+/* .container .board-flipped {
+    transform: rotateY(180deg);
+} */
+
+/* simple cell */
 
 .container .board .cell {
     font-family: 'Courier New', Courier, monospace;
@@ -50,6 +58,8 @@ header {
     line-height: 0px;
 }
 
+/* first player message */
+
 .container .board .message {
     display: flex;
     flex-direction: column;
@@ -58,6 +68,7 @@ header {
     align-items: center;
     color: white;
     background-color: #0D101B;
+    cursor: pointer;
 }
 
 .container .board .message .top {
@@ -69,6 +80,24 @@ header {
     justify-content: center;
     align-items: center;
 }
+
+/* start button */
+
+.container .board .start {
+    background-color: #0D101B;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bolder;
+    font-size: 4.5rem;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+}
+
+
+/* buttons */
 
 .container .board .message .bottom {
     display: flex;
@@ -98,4 +127,5 @@ header {
     border-radius: 25px;
     border-color: #A2A1A7;
     color: white;
+    cursor: pointer;
 }

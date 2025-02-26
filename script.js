@@ -1,10 +1,9 @@
 const reset = document.getElementById('reset-board')
 const restart = document.getElementById('reset-game')
 const board = document.getElementById('board')
+const start = document.getElementById('start')
 
 let currentPlayerTurn = undefined
-
-// functions
 
 // output either 1 or 0 | 1 = X | 0 = O
 function defineFirstPlayer() {
@@ -37,19 +36,58 @@ function startMessage() {
     background.addEventListener('click', () => {
         // play animation in reverse
 
-        // after animation clean board aand generate new board to star game
-        board.innerHTML
+        // after animation clean board and generate new board to star game
+        
         generateBoard()
     });
 
-    background.appendChild(backgroundBottom)
+    
     background.appendChild(backgroundTop)
+    background.appendChild(backgroundBottom)
     
     // append the background card and do a animation as soon as it is appended
-    // board.appendChild(background)
+    board.appendChild(background)
 }
 
 function generateBoard() {
+    board.innerHTML = ''
+
+    board.style.gridTemplateColumns = 'repeat(3, 1fr)'
+    board.style.gridTemplateRows = 'repeat(3, 1fr)'
+    
+    // create a for that will create the cells
+    // add a event listener in the cell to call a
+    // function that will check if any of the programed
+    // positions has been matched, if yes the position 
+    // matched should win
+
+    
     
 }
 
+start.addEventListener('click', () => {
+    startMessage()
+})
+
+restart.addEventListener('click', () => {
+    restartBoard()
+})
+
+reset.addEventListener('click', function() {
+    
+})
+
+function restartBoard() {
+    board.innerHTML = ''
+
+    const startDiv = document.createElement('div')
+    startDiv.classList.add('start')
+    startDiv.textContent = '>Start Game<'
+    startDiv.id = 'start'
+
+    startDiv.addEventListener('click', function() {
+        startMessage()
+    })
+
+    board.appendChild(startDiv)
+}
