@@ -25,6 +25,7 @@ function startMessage() {
     let firstPlayer = Math.round(Math.random())
 
     // clean the board and set the style
+    boardList = []
     board.innerHTML = ''
     board.style.gridTemplateColumns = '1fr'
     board.style.gridTemplateRows = '1fr'
@@ -71,33 +72,77 @@ function generateBoard() {
 
     for (let index = 0; index < 9; index++) {
 
+        boardList.push(undefined)
+
         const cell = document.createElement('div')
         cell.classList.add('cell')
 
         let isCellMarked = false
 
         cell.addEventListener('click', function(){
-            // see who turn it is, place the simbol in the div
-            // see if there is a winner, if yes stop game 
-            // and declare it, if not change turn and continue
 
+            console.log(index)
+            let winner = undefined
 
             if (currentPlayerTurn == player1 && isCellMarked == false) {
-                console.log('player1 turn')
+                // console.log('player1 turn')
                 cell.textContent = player1.symbol
                 isCellMarked = true
                 currentPlayerTurn = player2
+
+                boardList[index] = player1
+
+                winner = checkWinner(player1)
             } else if (currentPlayerTurn == player2 && isCellMarked == false) {
-                console.log('player2 turn')
+                // console.log('player2 turn')
                 cell.textContent = player2.symbol
                 isCellMarked = true
                 currentPlayerTurn = player1
-            }
 
+                boardList[index] = player1
+
+                winner = checkWinner(player2)
+            }
+            // call function to declare winner and reset winner
+            
         })
 
         board.appendChild(cell)
     }
+}
+
+function checkWinner(player) {
+    // check rows
+    if (boardList[0] == boardList[1] && boardList[1] == boardList[2] && boardList[0] != undefined) {
+        return true
+    }
+    if (boardList[3] == boardList[4] && boardList[4] == boardList[5] && boardList[3] != undefined) {
+        return true
+    }
+    if (boardList[6] == boardList[7] && boardList[7] == boardList[8] && boardList[6] != undefined) {
+        return true
+    }
+
+    // check columns
+    if (boardList[0] == boardList[3] && boardList[3] == boardList[6] && boardList[0] != undefined) {
+        return true
+    }
+    if (boardList[1] == boardList[4] && boardList[4] == boardList[7] && boardList[1] != undefined) {
+        return true
+    }
+    if (boardList[2] == boardList[5] && boardList[5] == boardList[8] && boardList[2] != undefined) {
+        return true
+    }
+
+    // check diagonals
+    if (boardList[0] == boardList[4] && boardList[4] == boardList[8] && boardList[0] != undefined) {
+        return true
+    }
+    if (boardList[6] == boardList[4] && boardList[4] == boardList[2] && boardList[6] != undefined) {
+        return true
+    }
+
+    return false
 }
 
 start.addEventListener('click', () => {
@@ -111,10 +156,6 @@ restart.addEventListener('click', () => {
 reset.addEventListener('click', function() {
     
 })
-
-function populateList() {
-    
-}
 
 function restartBoard() {
     board.innerHTML = ''
