@@ -210,7 +210,6 @@ function restartBoard() {
     player2Score.textContent = player2.symbol + ' = ' + player2.showScore()
 
     startDiv.addEventListener('click', function() {
-
         startMessage()
     })
 
@@ -226,7 +225,7 @@ restart.addEventListener('click', () => {
 })
 
 reset.addEventListener('click', function() {
-    
+    startMessage()
 })
 
 const player1 = createPlayer('X')
